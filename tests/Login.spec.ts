@@ -26,6 +26,15 @@ test.beforeEach(async ({ page }, testInfo) => {
 
 test.describe('Login Functionality Test', () => {
 
+    /* The below tests are designed to verify various aspects of login and registration functionality within the application.
+
+    - TC0009 validates the successful login process for individual users using valid credentials, ensuring proper redirection to the user dashboard.
+    - TC0010 focuses on error handling for an incorrect email format, verifying that an appropriate error message is displayed to the user.
+    - TC0011 (Failed) tests login behavior with non-existent account credentials, ensuring the correct error message appears.
+    - TC0015 (skipped for now due to lack of credentials) is intended to validate the institutional login process.
+
+    */
+
     test('TC0009: Verify with valid individual login credentials', async ({ page }) => {
         console.log('Verifying Individual login...');
 
@@ -60,16 +69,11 @@ test.describe('Login Functionality Test', () => {
         console.log('Individual login with incorrect emaiil verified.');
     });
 
-    test.skip('TC0011: Verify with invalid email', async ({ page }) => {
+    test('TC0011: Verify with invalid email', async ({ page }) => {
         console.log('Verifying Individual login with non-existent account email...');
     
-        // Navigate to the login page
-        await page.goto(loginURL);
-    
-        // Fill in an invalid email
+        await page.goto(loginURL)
         await page.getByLabel('Email').fill('cslcsl123@gmail.com');
-    
-        // Click the Continue button
         await page.getByRole('button', { name: 'Continue' }).click();
     
         // Wait for the specific error message to appear
@@ -82,12 +86,4 @@ test.describe('Login Functionality Test', () => {
     test.skip('TC0015: Verify with valid institutional login credentials', async ({ page }) => {
         // No credentials to test
     });
-});
-
-test.describe('Register Functionality Test', () => {
-
-    test.skip('TC0032: Verify Register', async ({ page }) => {
-        // Difficult to automate - need email otp verification
-    });
-
 });

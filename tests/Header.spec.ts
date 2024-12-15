@@ -18,15 +18,8 @@ test.describe('Header Navigation Test', () => {
     - TC0030 (skipped for now due to requiring human verification) examines the "Individual login" link to ensure it redirects to the appropriate login page. 
     - TC0031 validates the "Institutional login" link and its redirection to the institutional login page. 
     - TC0032 (skipped for now due to requiring human verification) checks the "Register" link functionality, confirming it navigates to the registration page. 
-    
+    - TC0033 verifies the presence of the title on the page.
     */
-
-    test('TC0027: Verify has a title', async ({ page }) => {
-
-        // Check visibility of the title
-        expect(await page.title()).toBe("Wiley Online Library | Scientific research articles, journals, books, and reference works");
-
-    });
 
     test('TC0028: Verify main logo functionality', async ({ page }) => {
         console.log('Verifying main logo functionality...');
@@ -107,5 +100,12 @@ test.describe('Header Navigation Test', () => {
         // Verify redirection
         await page.waitForURL(/wiley\.scienceconnect\.io\/register/);
         console.log('Register link navigation verified.');
+    });
+
+    test('TC0033: Verify has a title', async ({ page }) => {
+
+        // Check visibility of the title
+        expect(await page.title()).toBe("Wiley Online Library | Scientific research articles, journals, books, and reference works");
+
     });
 });
