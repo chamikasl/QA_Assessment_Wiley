@@ -2,21 +2,6 @@ import { test, expect, Page } from '@playwright/test';
 
 // Configuration
 const baseURL = 'https://onlinelibrary.wiley.com/';
-const loginURL = 'https://wiley.scienceconnect.io/login/';
-const email = process.env.EMAIL || 'your-email@example.com';
-const password = process.env.PASSWORD || 'your-password';
-
-// Helper function for login
-async function login(page: Page) {
-    console.log('Starting login...');
-    await page.goto(loginURL);
-    await page.getByLabel('Email').fill(email);
-    await page.getByRole('button', { name: 'Continue' }).click();
-    await page.getByLabel('Enter Password').fill(password);
-    await page.getByRole('button', { name: 'Continue' }).click();
-    await page.waitForNavigation();
-    console.log('succesfully logged.');
-}
 
 // Test setup
 test.beforeEach(async ({ page }, testInfo) => {
@@ -25,6 +10,23 @@ test.beforeEach(async ({ page }, testInfo) => {
 });
 
 test.describe('Header Navigation Test', () => {
+
+    /* The below tests designed to verify the functionality of various elements in the header navigation. 
+
+    - TC0028 checks the visibility and click functionality of the main logo, ensuring that it redirects the user to the application's main page. 
+    - TC0029 focuses on the "Login / Register" button, verifying its visibility, interaction, and the presence of links within the dropdown menu, such as "Individual login," "Institutional login," and "REGISTER". Also, there are specific tests for the functionality of these individual links. 
+    - TC0030 (skipped for now due to requiring human verification) examines the "Individual login" link to ensure it redirects to the appropriate login page. 
+    - TC0031 validates the "Institutional login" link and its redirection to the institutional login page. 
+    - TC0032 (skipped for now due to requiring human verification) checks the "Register" link functionality, confirming it navigates to the registration page. 
+    
+    */
+
+    test('TC0027: Verify has a title', async ({ page }) => {
+
+        // Check visibility of the title
+        expect(await page.title()).toBe("Wiley Online Library | Scientific research articles, journals, books, and reference works");
+
+    });
 
     test('TC0028: Verify main logo functionality', async ({ page }) => {
         console.log('Verifying main logo functionality...');
@@ -106,6 +108,4 @@ test.describe('Header Navigation Test', () => {
         await page.waitForURL(/wiley\.scienceconnect\.io\/register/);
         console.log('Register link navigation verified.');
     });
-
 });
-
