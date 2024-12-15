@@ -87,7 +87,7 @@ test.describe('Search Functionality Test', () => {
 
         // Perform search
         await searchBar.click();
-        await searchBar.fill('@%^&*()^%$#');
+        await searchBar.fill('Machine Learning');
         await searchIcon.click();
 
         await page.waitForTimeout(2000);
