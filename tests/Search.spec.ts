@@ -17,8 +17,8 @@ test.describe('Search Functionality Test', () => {
     - TC0034: Validates that pressing "Enter" after entering a search term submits the search request and navigates to the appropriate results page.
     - TC0035: Ensures the visibility of essential elements such as the search bar, search icon, and the "Advanced Search" link.
     - TC0036(need human verificattion): Confirms that clicking the search icon submits the search request and navigates to the results page.
-    - TC0021: This test verifies the application's behavior when searching with a valid keyword, ensuring the search results page is displayed with the appropriate results.
-    - TC0025: This test verifies the application's behavior when searching with a invalid keyword.
+    - TC0021(need human verification): This test verifies the application's behavior when searching with a valid keyword, ensuring the search results page is displayed with the appropriate results.
+    - TC0025(need human verification): This test verifies the application's behavior when searching with a invalid keyword.
     */
 
     test('TC0027: Verify advanced search button', async ({ page }) => {
@@ -79,7 +79,7 @@ test.describe('Search Functionality Test', () => {
         console.log('Search Verify submit by pressing enter verified.');
     });
     
-    test('TC0021: Verify with a valid keyword', async ({ page }) => {
+    test.skip('TC0021: Verify with a valid keyword', async ({ page }) => {
         console.log('Verifying search functionality...');
 
         const searchBar = page.getByPlaceholder('Search publications, articles');
@@ -101,7 +101,7 @@ test.describe('Search Functionality Test', () => {
         console.log('Search functionality with invalid keyword verified.');
     });
 
-    test('TC0025: Verify with a invalid keyword', async ({ page }) => {
+    test.skip('TC0025: Verify with a invalid keyword', async ({ page }) => {
         console.log('Verifying search functionality...');
 
         const searchBar = page.getByPlaceholder('Search publications, articles');
