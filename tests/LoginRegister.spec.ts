@@ -26,7 +26,7 @@ test.beforeEach(async ({ page }, testInfo) => {
 
 test.describe('Login Functionality Test', () => {
 
-    test('TC0030: Verify Individual login', async ({ page }) => {
+    test('TC0009: Verify with valid individual login credentials', async ({ page }) => {
         console.log('Verifying Individual login...');
 
         await page.goto(loginURL);
@@ -44,10 +44,44 @@ test.describe('Login Functionality Test', () => {
         console.log('Individual login verified.');
     });
 
-    test.skip('TC0031: Verify Institutional login', async ({ page }) => {
-        // No credentials to test
+    test('TC0010: Verify with incorrect email', async ({ page }) => {
+        console.log('Verifying Individual login...');
+
+        await page.goto(loginURL);
+        await page.getByLabel('Email').fill('qwer');
+        await page.getByRole('button', { name: 'Continue' }).click();
+
+        await page.waitForTimeout(2000);
+
+        // Wait for the error message to appear
+        const errorMessage = page.locator('#email-error-message');
+        await expect(errorMessage).toHaveText('Please enter a valid e-mail address.');
+
+        console.log('Individual login with incorrect emaiil verified.');
     });
 
+    test.skip('TC0011: Verify with invalid email', async ({ page }) => {
+        console.log('Verifying Individual login with non-existent account email...');
+    
+        // Navigate to the login page
+        await page.goto(loginURL);
+    
+        // Fill in an invalid email
+        await page.getByLabel('Email').fill('cslcsl123@gmail.com');
+    
+        // Click the Continue button
+        await page.getByRole('button', { name: 'Continue' }).click();
+    
+        // Wait for the specific error message to appear
+        const errorMessage = page.locator('.MuiTypography');
+        await expect(errorMessage).toHaveText('account does not exist');
+    
+        console.log('Error message for non-existent account email verified successfully.');
+    });
+        
+    test.skip('TC0015: Verify with valid institutional login credentials', async ({ page }) => {
+        // No credentials to test
+    });
 });
 
 test.describe('Register Functionality Test', () => {
