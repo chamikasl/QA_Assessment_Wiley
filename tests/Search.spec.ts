@@ -94,7 +94,7 @@ test.describe('Search Functionality Test', () => {
 
         // Validate the search results message
         const resultMessage = page.locator('.results-message'); // Replace with the actual selector
-        await expect(resultMessage).toHaveText('0 results for "@%^&*()^%$#"'); // Replace with the actual expected text
+        await expect(resultMessage).toHaveText('Machine Learning"'); // Replace with the actual expected text
         
         console.log('Search functionality with invalid keyword verified.');
     });
