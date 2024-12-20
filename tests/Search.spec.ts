@@ -115,7 +115,7 @@ test.describe('Search Functionality Test', () => {
         await searchBar.fill('@%^&*()^%$#');
         await searchIcon.click();
     
-        // Wait for the search result to load (if necessary, adjust this waiting logic)
+        // Wait for the search result to load
         await page.waitForTimeout(2000);
     
         // Track visibility of the no-result message
